@@ -24,7 +24,7 @@ function capturaDatosPaciente(form){
 
     return paciente;
 }
-function construirTr(paciente){
+const construirTr = (paciente) =>{
     //var nombre = form.nombre.value;
     //var peso = form.peso.value;
     //var altura = form.altura.value;
@@ -36,19 +36,22 @@ function construirTr(paciente){
     pacienteTr.classList.add("paciente");
 
     // adicionamos los class a cada Td
-    var nombreTd = document.createElement("td");
-    nombreTd.classList.add("info-nombre");
+    //var nombreTd = document.createElement("td");
+    //nombreTd.classList.add("info-nombre");
+    //var alturaTd = document.createElement("td");
+    //alturaTd.classList.add("info-altura");
+    //var pesoTd = document.createElement("td");
+    //pesoTd.classList.add("info-peso");
+    //var gorduraTd = document.createElement("td");
+    //gorduraTd.classList.add("info-gordura");
 
-    var alturaTd = document.createElement("td");
-    alturaTd.classList.add("info-altura");
+    //aplicamos la funcion para Td
+    var nombreTd = construirTd(paciente.nombre,"info-nombre");
+    var alturaTd = construirTd(paciente.altura,"info-altura");
+    var pesoTd = construirTd(paciente.peso,"info-peso");
+    var gorduraTd = construirTd(paciente.gordura,"info-gordura");
 
-    var pesoTd = document.createElement("td");
-    pesoTd.classList.add("info-peso");
-
-    var gorduraTd = document.createElement("td");
-    gorduraTd.classList.add("info-gordura");
-
-    var imcTd = document.createElement("td");
+     var imcTd = document.createElement("td");
 
     nombreTd.textContent = paciente.nombre;
     alturaTd.textContent = paciente.altura;
@@ -67,4 +70,14 @@ function construirTr(paciente){
 
     return pacienteTr;
 
+}
+
+
+const construirTd = (dato,clase ) =>{
+    var td = document.createElement("td");
+    td.classList.add(clase);
+    td.textContent = dato;
+
+
+    return td;
 }
