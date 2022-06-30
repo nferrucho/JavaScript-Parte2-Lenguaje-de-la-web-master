@@ -8,10 +8,11 @@ botonAdicionar.addEventListener("click",function(event){
     var pacienteTr = construirTr(paciente);
     var tabla = document.querySelector("#tabla-pacientes");
     tabla.appendChild(pacienteTr);
-
+    // para limpiar campos de entrada en la pantalla
+    form.reset();
 });
 
-function capturaDatosPaciente(form){
+const capturaDatosPaciente = (form) =>{
     //clase paciente con sus atributos
     var paciente = {
         nombre: form.nombre.value,
@@ -25,25 +26,12 @@ function capturaDatosPaciente(form){
     return paciente;
 }
 const construirTr = (paciente) =>{
-    //var nombre = form.nombre.value;
-    //var peso = form.peso.value;
-    //var altura = form.altura.value;
-    //var gordura = form.gordura.value
-    
+
 
     var pacienteTr = document.createElement("tr");     
     //creamos la class de Tr
     pacienteTr.classList.add("paciente");
 
-    // adicionamos los class a cada Td
-    //var nombreTd = document.createElement("td");
-    //nombreTd.classList.add("info-nombre");
-    //var alturaTd = document.createElement("td");
-    //alturaTd.classList.add("info-altura");
-    //var pesoTd = document.createElement("td");
-    //pesoTd.classList.add("info-peso");
-    //var gorduraTd = document.createElement("td");
-    //gorduraTd.classList.add("info-gordura");
 
     //aplicamos la funcion para Td
     var nombreTd = construirTd(paciente.nombre,"info-nombre");
