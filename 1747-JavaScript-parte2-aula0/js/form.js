@@ -7,10 +7,9 @@ botonAdicionar.addEventListener("click", function (event) {
     var paciente = capturaDatosPaciente(form);
     var pacienteTr = construirTr(paciente);
     //validacion peso altura paciente
-    var error = validarPaciente(paciente); 
-    if (error.length > 0) {
-        var mensajeError = document.querySelector("#mensaje-error")
-        mensajeError.textContent= error;
+    var errores = validarPaciente(paciente);
+    if (errores.length > 0) {
+        exhibirMensajeError(errores);
         return;
     }
 
@@ -78,8 +77,27 @@ const construirTd = (dato, clase) => {
 }
 
 const validarPaciente = (paciente) => {
-    if (validarPeso(paciente.peso))
-        return " El peso esta fuera de rango..! ";
-    else
-        return "";
+    var errores = [];
+    if (!validarPeso(paciente.peso)) {
+        errores.push(" El peso esta fuera de rango..! ");
+
+    }
+    if (!validarAltura(paciente.altura)) {
+        errores.push(" La altura esta fuera de rango..! ");
+
+    }
+    return errores;
+}
+
+function exhibirMensajeError(errores) {
+    var ul = document.querySelector("#mensajes-errores")
+
+    errores.forEach(function (error) {
+        var li = document.createElement("li");
+        li.textContent = error;
+        ul.appendChild(li);
+    });
+
+
+
 }
