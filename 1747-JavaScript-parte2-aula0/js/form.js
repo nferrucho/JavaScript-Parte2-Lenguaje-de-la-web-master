@@ -8,7 +8,7 @@ botonAdicionar.addEventListener("click", function (event) {
     var pacienteTr = construirTr(paciente);
     //validacion peso altura paciente
     var errores = validarPaciente(paciente);
-    console.log(errores);
+    //console.log(errores);
 
     if (errores.length > 0) {
         exhibirMensajeError(errores);
@@ -19,7 +19,7 @@ botonAdicionar.addEventListener("click", function (event) {
     tabla.appendChild(pacienteTr);
     // para limpiar campos de entrada en la pantalla
     form.reset();
-    
+
     //limpiando la lista de errores 
     var mensajesErrores = document.querySelector("#mensajes-errores");
     mensajesErrores.innerHTML = "";

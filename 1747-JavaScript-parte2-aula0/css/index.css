@@ -129,6 +129,7 @@ button[disabled=disabled], button:disabled {
     margin-top: 30px;
 }
 
+
 .campo-invalido{
 	border: 1px solid red;
 }
