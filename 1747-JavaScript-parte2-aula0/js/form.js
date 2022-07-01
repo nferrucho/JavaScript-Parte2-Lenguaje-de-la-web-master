@@ -8,6 +8,8 @@ botonAdicionar.addEventListener("click", function (event) {
     var pacienteTr = construirTr(paciente);
     //validacion peso altura paciente
     var errores = validarPaciente(paciente);
+    console.log(errores);
+
     if (errores.length > 0) {
         exhibirMensajeError(errores);
         return;
@@ -17,6 +19,10 @@ botonAdicionar.addEventListener("click", function (event) {
     tabla.appendChild(pacienteTr);
     // para limpiar campos de entrada en la pantalla
     form.reset();
+    
+    //limpiando la lista de errores 
+    var mensajesErrores = document.querySelector("#mensajes-errores");
+    mensajesErrores.innerHTML = "";
 });
 
 const capturaDatosPaciente = (form) => {
@@ -78,6 +84,18 @@ const construirTd = (dato, clase) => {
 
 const validarPaciente = (paciente) => {
     var errores = [];
+    if (paciente.nombre.length == 0)
+        errores.push(" El nombre no puede estar vacio..! ");
+
+    if (paciente.peso.length == 0)
+        errores.push(" El peso no puede estar vacio..! ");
+
+    if (paciente.altura.length == 0)
+        errores.push(" La altura no puede estar vacio..! ");
+
+    if (paciente.gordura.length == 0)
+        errores.push(" El volumen no puede estar vacio..! ");
+
     if (!validarPeso(paciente.peso)) {
         errores.push(" El peso esta fuera de rango..! ");
 
@@ -91,6 +109,9 @@ const validarPaciente = (paciente) => {
 
 function exhibirMensajeError(errores) {
     var ul = document.querySelector("#mensajes-errores")
+    
+    //inicializamos la lista 
+    ul.innerHTML = "";
 
     errores.forEach(function (error) {
         var li = document.createElement("li");
